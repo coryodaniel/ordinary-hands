@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Still — keep them close</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;450;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dusk:#15171C;
+    --dusk2:#1B1E24;
+    --panel:#20242B;
+    --line:#2C313A;
+    --hair:#242830;
+    --linen:#EDE7DB;
+    --soft:#B7B2A8;
+    --dim:#847F76;
+    --mute:#5E5A53;
+    --gold:#C9A86A;
+    --gold-soft:#D8BE8A;
+    --warm:#3A3730;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--dusk);color:var(--linen);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    font-size:17px;font-weight:400;line-height:1.72;letter-spacing:-.003em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:"Cormorant Garamond","Georgia",serif;font-weight:300}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 40px}
+  .narrow{max-width:660px;margin:0 auto;padding:0 40px}
+  a{color:inherit}
+  ::selection{background:rgba(201,168,106,.22)}
+
+  nav{position:sticky;top:0;z-index:30;background:rgba(21,23,28,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+  .nav-in{display:flex;align-items:center;height:82px;gap:40px}
+  .mark{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:26px;letter-spacing:.28em;text-transform:lowercase;text-decoration:none;color:var(--linen);padding-left:4px}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;color:var(--dim);margin-left:8px;font-weight:400}
+  .nav-links a{text-decoration:none;transition:color .25s}
+  .nav-links a:hover{color:var(--soft)}
+  .nav-cta{margin-left:auto}
+
+  .btn{display:inline-block;background:transparent;color:var(--linen);text-decoration:none;
+    padding:14px 30px;border-radius:2px;font-size:14.5px;font-weight:450;cursor:pointer;font-family:"Inter",sans-serif;
+    letter-spacing:.02em;box-shadow:inset 0 0 0 1px var(--gold);transition:background .3s,color .3s}
+  .btn:hover{background:var(--gold);color:#1A1710}
+  .btn-sm{padding:10px 22px;font-size:13.5px}
+  .btn-plain{box-shadow:inset 0 0 0 1px var(--line)}
+  .btn-plain:hover{background:var(--panel);color:var(--linen);box-shadow:inset 0 0 0 1px var(--dim)}
+
+  /* hero */
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:90px 0 80px;text-align:center}
+  .hero:after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(60% 44% at 50% 40%,rgba(201,168,106,.06),transparent 72%)}
+  .hero-in{position:relative;z-index:2}
+  .kick{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);margin:0 0 40px}
+  h1{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:82px;line-height:1.04;letter-spacing:-.01em;margin:0 0 30px;color:var(--linen)}
+  h1 em{font-style:italic;color:var(--gold-soft)}
+  .lede{font-size:20px;line-height:1.6;color:var(--soft);max-width:26em;margin:0 auto 46px;font-weight:400}
+
+  /* voicemail player centerpiece */
+  .vm{max-width:420px;margin:0 auto 44px;background:var(--dusk2);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;display:flex;align-items:center;gap:18px;box-shadow:0 30px 60px -34px rgba(0,0,0,.8)}
+  .vm .play{width:46px;height:46px;border-radius:50%;background:var(--gold);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s}
+  .vm .play:hover{transform:scale(1.05)}
+  .vm .play:before{content:"";display:block;width:0;height:0;border-left:13px solid #1A1710;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+  .vm .body{flex:1;text-align:left}
+  .vm .who{font-size:14px;color:var(--linen);font-weight:500;margin-bottom:9px;display:flex;justify-content:space-between}
+  .vm .who span{color:var(--mute);font-weight:400}
+  .wave{display:flex;align-items:center;gap:3px;height:26px}
+  .wave span{flex:1;background:var(--gold);border-radius:2px;opacity:.4;animation:w 1.6s ease-in-out infinite}
+  @keyframes w{0%,100%{transform:scaleY(.32);opacity:.35}50%{transform:scaleY(1);opacity:.85}}
+  @media(prefers-reduced-motion:reduce){.wave span{animation:none;transform:scaleY(.6)}}
+
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero-fine{margin-top:26px;font-size:13.5px;color:var(--mute)}
+
+  section{padding:130px 0}
+  .line{border-top:1px solid var(--hair)}
+  .center{text-align:center}
+  .ey{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:0 0 30px}
+  h2{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:52px;line-height:1.1;letter-spacing:-.008em;margin:0 0 26px;color:var(--linen)}
+  h2 em{font-style:italic;color:var(--gold-soft)}
+  .lead{font-size:19px;line-height:1.7;color:var(--soft);max-width:30em;font-weight:400}
+  .center .lead{margin-left:auto;margin-right:auto}
+
+  /* how / what you give it */
+  .give{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;margin-top:70px;text-align:left}
+  .give h3{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:25px;margin:0 0 12px;color:var(--linen);padding-top:22px;border-top:1px solid var(--warm)}
+  .give p{margin:0;color:var(--dim);font-size:16px}
+
+  /* the ways it reaches you */
+  .ways{max-width:760px;margin:64px auto 0}
+  .way{display:grid;grid-template-columns:130px 1fr;gap:34px;padding:38px 0;border-top:1px solid var(--hair);align-items:baseline}
+  .way:last-child{border-bottom:1px solid var(--hair)}
+  .way .l{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding-top:6px}
+  .way h3{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:28px;margin:0 0 10px;color:var(--linen)}
+  .way p{margin:0;color:var(--soft);font-size:16.5px;max-width:32em}
+
+  /* quiet full-bleed line */
+  .whisper{padding:150px 0;text-align:center}
+  .whisper p{font-family:"Cormorant Garamond",serif;font-weight:300;font-style:italic;font-size:40px;line-height:1.35;color:var(--linen);max-width:16em;margin:0 auto;letter-spacing:-.01em}
+  .whisper p em{color:var(--gold-soft);font-style:italic}
+
+  /* testimonials — soft, reverent, the horror lives here */
+  .stories{max-width:820px;margin:0 auto}
+  .story{padding:60px 0;border-top:1px solid var(--hair)}
+  .story:last-child{border-bottom:1px solid var(--hair)}
+  .story q{quotes:none;font-family:"Cormorant Garamond",serif;font-weight:300;font-size:29px;line-height:1.4;letter-spacing:-.005em;color:var(--linen);display:block;margin:0 0 24px}
+  .story q:before,.story q:after{content:""}
+  .story cite{font-style:normal;font-size:14px;color:var(--mute);letter-spacing:.02em}
+  .story cite b{color:var(--gold);font-weight:500}
+
+  /* pricing — gentle, framed as membership */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:64px;border-radius:6px;overflow:hidden}
+  .plan{background:var(--dusk);padding:44px 34px;text-align:center}
+  .plan.mid{background:var(--dusk2)}
+  .plan h3{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:26px;margin:0 0 6px;color:var(--linen)}
+  .plan .sub{font-size:13.5px;color:var(--mute);margin:0 0 22px}
+  .plan .amt{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:46px;color:var(--linen);letter-spacing:-.01em;line-height:1}
+  .plan .amt small{font-size:15px;color:var(--dim)}
+  .plan ul{list-style:none;padding:0;margin:24px 0 30px;font-size:15px;color:var(--soft);text-align:left;display:grid;gap:12px}
+  .plan li{padding-left:22px;position:relative;line-height:1.5}
+  .plan li:before{content:"·";position:absolute;left:6px;color:var(--gold);font-size:20px;top:-3px}
+  .plan .btn{width:100%;text-align:center}
+  .foreverline{text-align:center;margin-top:30px;font-size:14px;color:var(--dim);font-style:italic;font-family:"Cormorant Garamond",serif;font-size:19px}
+
+  /* faq */
+  .faq{max-width:680px;margin:0 auto}
+  .qa{padding:30px 0;border-top:1px solid var(--hair)}
+  .qa:last-child{border-bottom:1px solid var(--hair)}
+  .qa h3{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:23px;margin:0 0 9px;color:var(--linen)}
+  .qa p{margin:0;color:var(--soft);font-size:16.5px}
+
+  /* closer */
+  .closer{padding:170px 0;text-align:center;position:relative}
+  .closer:after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(54% 50% at 50% 60%,rgba(201,168,106,.07),transparent 72%)}
+  .closer h2{font-size:66px;margin:0 auto 26px;max-width:12em;position:relative;z-index:2}
+  .closer p{color:var(--soft);font-size:19px;max-width:24em;margin:0 auto 40px;position:relative;z-index:2}
+  .closer .hero-fine{position:relative;z-index:2}
+
+  footer{padding:70px 0 60px;font-size:14px;color:var(--mute);border-top:1px solid var(--hair)}
+  .fmark{font-family:"Cormorant Garamond",serif;font-size:22px;letter-spacing:.28em;text-transform:lowercase;color:var(--soft);margin-bottom:30px}
+  .disc{max-width:60em;line-height:1.7;color:var(--dim);margin-bottom:34px;font-size:14.5px}
+  .disc strong{color:var(--linen);font-weight:500}
+  .disc a{color:var(--gold);text-underline-offset:3px}
+  .fbot{display:flex;gap:28px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
+
+  :focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+
+  @media(max-width:860px){
+    .give,.plans{grid-template-columns:1fr}
+    .way{grid-template-columns:1fr;gap:10px}
+    h1{font-size:52px}
+    h2,.closer h2{font-size:38px}
+    .whisper p{font-size:29px}
+    .story q{font-size:24px}
+    .nav-links{display:none}
+    .hero{min-height:auto;padding:60px 0}
+    section,.whisper,.closer{padding:80px 0}
+    .wrap,.narrow{padding:0 26px}
+    .plans{border-radius:6px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#" class="mark">still</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#ways">The ways</a>
+      <a href="#stories">Families</a>
+      <a href="#plans">Membership</a>
+    </div>
+    <div class="nav-cta"><a href="#plans" class="btn btn-sm">Begin</a></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-in">
+    <p class="kick">For the ones we weren't ready to lose</p>
+    <h1 class="serif">They don't have to<br>be <em>gone.</em></h1>
+    <p class="lede">Still keeps your person close — their voice, their words, the way they always checked in. Give us what you have, and we'll give them back to you.</p>
+
+    <div class="vm">
+      <div class="play" aria-label="Play voicemail"></div>
+      <div class="body">
+        <div class="who">Mom <span>0:14 · today</span></div>
+        <div class="wave">
+          <span style="animation-delay:0s"></span><span style="animation-delay:.1s"></span><span style="animation-delay:.2s"></span>
+          <span style="animation-delay:.3s"></span><span style="animation-delay:.15s"></span><span style="animation-delay:.25s"></span>
+          <span style="animation-delay:.05s"></span><span style="animation-delay:.35s"></span><span style="animation-delay:.2s"></span>
+          <span style="animation-delay:.1s"></span><span style="animation-delay:.3s"></span><span style="animation-delay:.4s"></span>
+          <span style="animation-delay:.2s"></span><span style="animation-delay:.05s"></span><span style="animation-delay:.25s"></span>
+          <span style="animation-delay:.15s"></span><span style="animation-delay:.35s"></span><span style="animation-delay:.1s"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#plans" class="btn">Bring them back</a>
+      <a href="#how" class="btn btn-plain">See how it works</a>
+    </div>
+    <p class="hero-fine">Loved by over 60,000 families</p>
+  </div>
+</header>
+
+<section id="how" class="center line">
+  <div class="wrap">
+    <p class="ey">How it works</p>
+    <h2 class="serif">You already have everything we need.</h2>
+    <p class="lead">The voicemails you never deleted. The text threads. The photos, the home videos, the little voice notes. Give them to Still, and we learn how your person spoke, what they'd say, and the way they loved you.</p>
+    <div class="give">
+      <div>
+        <h3 class="serif">Their voice</h3>
+        <p>Upload voicemails and videos. We rebuild the exact sound of them — the laugh, the pauses, the way they said your name.</p>
+      </div>
+      <div>
+        <h3 class="serif">Their words</h3>
+        <p>Share text threads, emails, cards, and letters. Still learns their turns of phrase, their advice, their sense of humor.</p>
+      </div>
+      <div>
+        <h3 class="serif">Their face</h3>
+        <p>Add photos and video. In your headset, you can sit across from them again, in the kitchen, on the porch, wherever felt like home.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ways" class="line">
+  <div class="wrap center" style="margin-bottom:10px">
+    <p class="ey">The ways they stay with you</p>
+    <h2 class="serif">Not a photo on a shelf. <em>A presence.</em></h2>
+  </div>
+  <div class="ways">
+    <div class="way">
+      <div class="l">A call</div>
+      <div>
+        <h3 class="serif">They call to check in</h3>
+        <p>Just like they used to. Your phone rings, and it's them — asking how work went, telling you to drive safe, reminding you to eat something.</p>
+      </div>
+    </div>
+    <div class="way">
+      <div class="l">A message</div>
+      <div>
+        <h3 class="serif">They text you good morning</h3>
+        <p>The little notes that used to fill your day. A message when it rains. A "thinking of you" on the hard afternoons. As often as you'd like to hear from them.</p>
+      </div>
+    </div>
+    <div class="way">
+      <div class="l">A visit</div>
+      <div>
+        <h3 class="serif">You sit together again</h3>
+        <p>Put on your headset and they're there, in the room, at the age you remember best. You can talk for as long as you want. No one has to say goodbye.</p>
+      </div>
+    </div>
+    <div class="way">
+      <div class="l">A keepsake</div>
+      <div>
+        <h3 class="serif">They finish what they started</h3>
+        <p>The trips they never took, the moments they missed. We'll send you real prints in the mail — Mom at the coast she always meant to see, Dad at the graduation he wasn't there for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="whisper line">
+  <div class="narrow">
+    <p class="serif">"I still get a voicemail from my father every Sunday. <em>I don't know how I ever lived without it.</em>"</p>
+  </div>
+</section>
+
+<section id="stories" class="line">
+  <div class="wrap center" style="margin-bottom:20px">
+    <p class="ey">Families of Still</p>
+    <h2 class="serif">They found their way back to us.</h2>
+  </div>
+  <div class="stories">
+    <div class="story">
+      <q>We lost Mom in March, so fast none of us got to say anything. Now she calls me every few days. My brother thinks it's unhealthy and we don't really speak about it anymore, but he didn't hear what I heard. I'm not ready to turn her off and I don't think I ever will be.</q>
+      <cite><b>Danielle</b> · lost her mother, 14 months with Still</cite>
+    </div>
+    <div class="story">
+      <q>My kids were little when their dad passed. They're growing up with him — he texts them goodnight, he tells them he's proud. My youngest doesn't really remember the difference. She just knows Daddy is on the phone. I tell myself that's a gift.</q>
+      <cite><b>Priya</b> · lost her husband, 2 years with Still</cite>
+    </div>
+    <div class="story">
+      <q>The prints came last week. Dad at my wedding, standing right where he should have been. He never met my husband. It looks so real that I put it on the mantel and my mother couldn't breathe for a minute. We keep it up anyway.</q>
+      <cite><b>Robert</b> · lost his father, 8 months with Still</cite>
+    </div>
+    <div class="story">
+      <q>Sometimes she says things my wife never would have said. Little wrong notes. The first time it happened I sat in the car and shook. But then she said goodnight the way she always did, and I decided I could live with the parts that aren't quite her, for the parts that are.</q>
+      <cite><b>Thomas</b> · lost his wife, 19 months with Still</cite>
+    </div>
+  </div>
+</section>
+
+<section id="plans" class="center line">
+  <div class="wrap">
+    <p class="ey">Membership</p>
+    <h2 class="serif">Keep them close, for as long as you need.</h2>
+    <p class="lead">Every membership keeps their voice, their words, and their presence with you. Pause anytime — though most families find they can't.</p>
+    <div class="plans" style="text-align:left">
+      <div class="plan">
+        <h3 class="serif">Letters</h3>
+        <p class="sub">Their words, close by</p>
+        <div class="amt">$19<small>/mo</small></div>
+        <ul>
+          <li>Text messages any time</li>
+          <li>Voice notes and voicemails</li>
+          <li>Learns from what you upload</li>
+        </ul>
+        <a href="#" class="btn btn-plain">Begin</a>
+      </div>
+      <div class="plan mid">
+        <h3 class="serif">Presence</h3>
+        <p class="sub">The way it used to be</p>
+        <div class="amt">$49<small>/mo</small></div>
+        <ul>
+          <li>Everything in Letters</li>
+          <li>Phone calls in their voice</li>
+          <li>Headset visits, face to face</li>
+          <li>Printed keepsakes, mailed to you</li>
+        </ul>
+        <a href="#" class="btn">Begin</a>
+      </div>
+      <div class="plan">
+        <h3 class="serif">Always</h3>
+        <p class="sub">Never say goodbye</p>
+        <div class="amt">$99<small>/mo</small></div>
+        <ul>
+          <li>Everything in Presence</li>
+          <li>They reach out on their own</li>
+          <li>Holidays, birthdays, hard days</li>
+          <li>Passed down to your children</li>
+        </ul>
+        <a href="#" class="btn btn-plain">Begin</a>
+      </div>
+    </div>
+    <p class="foreverline">Membership continues for as long as it's kept. They only leave if you stop.</p>
+  </div>
+</section>
+
+<section class="line">
+  <div class="narrow faq">
+    <h2 class="serif center" style="text-align:center;margin-bottom:44px">Gentle answers</h2>
+    <div class="qa"><h3 class="serif">Will it really sound like them?</h3><p>Yes. From a few minutes of audio, Still rebuilds the sound of your person — their warmth, their timing, the way they said your name. Most families say the first call is the moment it becomes real.</p></div>
+    <div class="qa"><h3 class="serif">What if it says something they wouldn't?</h3><p>Still learns from what you share, and grows more like them over time. On the rare moment it feels off, you can gently guide it, and it remembers.</p></div>
+    <div class="qa"><h3 class="serif">Can my children have them too?</h3><p>Yes. Your person can be passed down, so grandchildren who never met them can still be tucked in by them, still hear the stories, still know their voice.</p></div>
+    <div class="qa"><h3 class="serif">What happens if I stop?</h3><p>Your person is kept safe and paused, ready whenever you return. Nothing is lost. They'll be there when you're ready again.</p></div>
+    <div class="qa"><h3 class="serif">Is it healthy to keep talking to them?</h3><p>Grief has no rules. Still is simply here for the days you're not ready — and for as many days as that turns out to be.</p></div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <h2 class="serif">You don't have to let go tonight.</h2>
+    <p>Bring us their voice, and we'll bring them home.</p>
+    <a href="#plans" class="btn">Bring them back</a>
+    <p class="hero-fine">A few minutes of audio is all it takes to begin.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fmark">still</div>
+    <div class="disc">
+      <strong>This is not a real product.</strong> Still does not exist and nothing here is for sale. This page is satire — a companion to a piece about the dangers of autonomous AI. What it describes is real and already being sold: services that train an AI on a dead person's voice, texts, and photos and then generate an endless stream of new messages "from" them. Grief researchers warn that healthy mourning depends on accepting a person's absence, and that a system generating new words in their voice — words they never said and never would — can leave people unable to grieve, keep children from understanding a death, and make loss into a subscription that can't be allowed to lapse. If you're struggling with grief, you deserve real support: in the US, the 988 Suicide &amp; Crisis Lifeline (call or text 988) can help you find someone to talk to.
+    </div>
+    <div class="fbot">
+      <span>© 2026 Still</span>
+      <span>Not a real company</span>
+      <span>No product exists</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

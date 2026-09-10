@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amplifi — Your business, on autopilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EF;
+    --cream2:#F5ECDF;
+    --blush:#F3E1DA;
+    --rose:#D98C7A;
+    --rose-dk:#C4715E;
+    --gold:#C6A15B;
+    --gold-dk:#A9863F;
+    --ink:#4A3B35;
+    --body:#7A6A62;
+    --soft:#A89388;
+    --line:#E9DDCF;
+    --white:#FFFDFA;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:"Fraunces","Georgia",serif}
+  .script{font-family:"Dancing Script","Segoe Script",cursive}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 34px}
+  .narrow{max-width:720px;margin:0 auto;padding:0 34px}
+  a{color:inherit}
+
+  /* announce */
+  .top{background:linear-gradient(90deg,var(--rose),var(--gold));color:#fff;text-align:center;
+    font-size:13.5px;padding:9px 18px;letter-spacing:.01em;font-weight:500}
+
+  /* nav */
+  nav{background:rgba(251,246,239,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+  .nav-in{display:flex;align-items:center;height:74px;gap:36px}
+  .brand{font-family:"Fraunces",serif;font-weight:600;font-size:25px;letter-spacing:-.01em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:3px}
+  .brand b{color:var(--rose);font-weight:600}
+  .brand .spark{color:var(--gold);font-size:17px;margin-left:1px}
+  .nav-links{display:flex;gap:28px;font-size:15px;color:var(--body);margin-left:8px}
+  .nav-links a{text-decoration:none}
+  .nav-links a:hover{color:var(--rose)}
+  .nav-cta{margin-left:auto;display:flex;align-items:center;gap:18px}
+  .nav-cta .signin{font-size:15px;color:var(--body);text-decoration:none}
+
+  .btn{display:inline-block;background:linear-gradient(180deg,var(--rose),var(--rose-dk));color:#fff;
+    text-decoration:none;padding:14px 28px;border-radius:40px;font-size:15.5px;font-weight:600;border:none;
+    cursor:pointer;font-family:inherit;letter-spacing:.005em;box-shadow:0 8px 18px -8px rgba(196,113,94,.6);
+    transition:transform .15s,box-shadow .15s}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 12px 22px -8px rgba(196,113,94,.7)}
+  .btn-sm{padding:10px 20px;font-size:14px}
+  .btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-dk));box-shadow:0 8px 18px -8px rgba(169,134,63,.6)}
+  .btn-ghost{background:transparent;color:var(--rose-dk);box-shadow:inset 0 0 0 1.5px var(--blush)}
+  .btn-ghost:hover{background:var(--white);box-shadow:inset 0 0 0 1.5px var(--rose)}
+
+  /* hero */
+  header.hero{padding:74px 0 84px;position:relative;overflow:hidden;
+    background:radial-gradient(120% 80% at 80% 0%,var(--blush) 0%,rgba(243,225,218,0) 55%)}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);
+    border-radius:30px;padding:7px 16px;font-size:13.5px;color:var(--rose-dk);font-weight:500;margin-bottom:26px}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--rose)}
+  h1{font-family:"Fraunces",serif;font-weight:600;font-size:62px;line-height:1.02;letter-spacing:-.02em;margin:0 0 10px;color:var(--ink)}
+  h1 .sc{font-family:"Dancing Script",cursive;font-weight:700;color:var(--rose);font-size:1.06em;font-weight:700}
+  .sub{font-size:20px;line-height:1.55;color:var(--body);max-width:27em;margin:14px 0 32px}
+  .hero-cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .hero-note{margin-top:18px;font-size:14px;color:var(--soft);display:flex;align-items:center;gap:8px}
+  .hero-note b{color:var(--rose-dk);font-weight:600}
+
+  /* hero card — the dashboard mock */
+  .dash{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:24px;
+    box-shadow:0 30px 60px -30px rgba(74,59,53,.28)}
+  .dash-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .dash-top .u{display:flex;align-items:center;gap:10px}
+  .ava{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--gold))}
+  .dash-top .u b{font-size:15px;font-weight:600;display:block}
+  .dash-top .u span{font-size:12.5px;color:var(--soft)}
+  .live{font-size:12px;color:#3FA06B;font-weight:600;display:flex;align-items:center;gap:6px}
+  .live i{width:7px;height:7px;border-radius:50%;background:#3FA06B;display:block;box-shadow:0 0 0 3px rgba(63,160,107,.16);animation:pl 2.4s ease-in-out infinite}
+  @keyframes pl{0%,100%{opacity:.5}50%{opacity:1}}
+  .bignum{font-family:"Fraunces",serif;font-weight:600;font-size:42px;letter-spacing:-.02em;color:var(--ink);line-height:1;margin:6px 0 3px}
+  .bignum .up{font-family:"Inter",sans-serif;font-size:15px;color:#3FA06B;font-weight:600;margin-left:8px}
+  .dashlabel{font-size:13px;color:var(--soft);margin-bottom:18px}
+  .spark-row{display:flex;align-items:flex-end;gap:5px;height:70px;margin-bottom:20px}
+  .spark-row span{flex:1;background:linear-gradient(180deg,var(--rose),var(--blush));border-radius:4px 4px 0 0;opacity:.9}
+  .feed{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
+  .feed-i{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--body)}
+  .feed-i .ic{width:26px;height:26px;border-radius:50%;background:var(--cream2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+  .feed-i b{color:var(--ink);font-weight:600}
+  .feed-i .t{margin-left:auto;font-size:11.5px;color:var(--soft);white-space:nowrap}
+
+  /* logos / trust */
+  .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--white)}
+  .trust-in{padding:26px 0;text-align:center}
+  .trust p{margin:0 0 14px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+  .trust .row{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;font-family:"Fraunces",serif;font-size:19px;color:var(--soft);font-weight:500}
+
+  /* sections */
+  section{padding:88px 0}
+  .center{text-align:center}
+  .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);font-weight:600;margin:0 0 16px}
+  h2{font-family:"Fraunces",serif;font-weight:600;font-size:42px;line-height:1.08;letter-spacing:-.02em;margin:0 0 18px;color:var(--ink)}
+  .lead{font-size:19px;color:var(--body);max-width:32em;margin:0 auto 0}
+  .center .lead{margin:0 auto}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:56px}
+  .step{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:34px 30px;text-align:center;position:relative}
+  .step .no{font-family:"Dancing Script",cursive;font-weight:700;font-size:40px;color:var(--rose);line-height:1;margin-bottom:12px}
+  .step h3{font-family:"Fraunces",serif;font-weight:600;font-size:22px;margin:0 0 10px}
+  .step p{margin:0;font-size:15.5px;color:var(--body)}
+
+  /* the compounding pitch */
+  .compound{background:linear-gradient(160deg,var(--cream2),var(--blush));border-radius:28px;padding:60px 50px;
+    display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .compound h2{margin-bottom:14px}
+  .compound p{color:var(--body);font-size:17.5px;margin:0 0 14px}
+  .calc{background:var(--white);border-radius:20px;padding:30px;box-shadow:0 20px 40px -24px rgba(74,59,53,.3)}
+  .calc .row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--body)}
+  .calc .row:last-child{border-bottom:none}
+  .calc .row b{font-family:"Fraunces",serif;font-size:22px;color:var(--ink);font-weight:600}
+  .calc .row.big b{font-size:30px;color:var(--rose-dk)}
+  .calc .cap{font-size:12px;color:var(--soft);margin-top:14px;line-height:1.5}
+
+  /* testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+  .q{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:28px}
+  .q .stars{color:var(--gold);font-size:14px;letter-spacing:.1em;margin-bottom:14px}
+  .q p{font-size:16px;color:var(--ink);margin:0 0 20px;line-height:1.55}
+  .q .who{display:flex;align-items:center;gap:12px}
+  .q .who .a{width:42px;height:42px;border-radius:50%;flex-shrink:0}
+  .q .who b{font-size:14.5px;font-weight:600;display:block}
+  .q .who span{font-size:13px;color:var(--soft)}
+  .a1{background:linear-gradient(135deg,#E8B4A0,#D98C7A)}
+  .a2{background:linear-gradient(135deg,#D9C27A,#C6A15B)}
+  .a3{background:linear-gradient(135deg,#C9A9C4,#A98CB0)}
+  .a4{background:linear-gradient(135deg,#A0C4B4,#7AAE9A)}
+  .a5{background:linear-gradient(135deg,#E8A0B4,#D97A94)}
+  .a6{background:linear-gradient(135deg,#C4A99A,#A98C7A)}
+
+  /* pricing */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;align-items:start}
+  .tier{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:34px 30px;position:relative}
+  .tier.feat{border:2px solid var(--rose);box-shadow:0 26px 50px -28px rgba(196,113,94,.5)}
+  .tier .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--rose);color:#fff;font-size:12px;font-weight:600;padding:5px 15px;border-radius:20px;white-space:nowrap}
+  .tier h3{font-family:"Fraunces",serif;font-weight:600;font-size:23px;margin:0 0 4px;text-align:center}
+  .tier .sub{font-size:14px;color:var(--soft);text-align:center;margin:0 0 18px}
+  .tier .amt{font-family:"Fraunces",serif;font-weight:600;font-size:44px;text-align:center;color:var(--ink);letter-spacing:-.02em}
+  .tier .amt small{font-size:16px;color:var(--soft);font-weight:400}
+  .tier .seed{text-align:center;font-size:13px;color:var(--rose-dk);font-weight:600;margin:6px 0 22px;background:var(--blush);border-radius:20px;padding:6px 12px}
+  .tier ul{list-style:none;padding:0;margin:0 0 26px;font-size:15px;color:var(--body)}
+  .tier li{padding:9px 0 9px 26px;position:relative}
+  .tier li:before{content:"♥";position:absolute;left:2px;color:var(--rose);font-size:12px;top:11px}
+  .tier .btn{width:100%;text-align:center}
+
+  /* faq */
+  .faq{max-width:720px;margin:0 auto}
+  .qa{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px 26px;margin-bottom:14px}
+  .qa h3{font-family:"Fraunces",serif;font-weight:600;font-size:18px;margin:0 0 7px}
+  .qa p{margin:0;font-size:15.5px;color:var(--body)}
+
+  /* closer */
+  .closer{background:linear-gradient(160deg,var(--rose),var(--gold));color:#fff;text-align:center;border-radius:0}
+  .closer h2{color:#fff;font-size:52px;margin:0 auto 16px;max-width:14em}
+  .closer p{color:rgba(255,255,255,.92);font-size:19px;max-width:26em;margin:0 auto 30px}
+  .closer .btn{background:#fff;color:var(--rose-dk);box-shadow:0 14px 30px -12px rgba(0,0,0,.3)}
+  .closer .fine{margin-top:20px;font-size:13.5px;color:rgba(255,255,255,.8)}
+
+  /* footer */
+  footer{background:var(--white);border-top:1px solid var(--line);padding:56px 0 44px;font-size:14px;color:var(--soft)}
+  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:38px;border-bottom:1px solid var(--line)}
+  .fgrid .brand{font-size:24px;margin-bottom:12px}
+  .fgrid p{margin:0;max-width:22em;line-height:1.6}
+  .fgrid h5{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--body);margin:0 0 14px;font-weight:600}
+  .fgrid ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+  .fgrid a{text-decoration:none}
+  .fgrid a:hover{color:var(--rose)}
+  .disc{margin-top:30px;background:var(--cream2);border:1px solid var(--line);border-radius:14px;padding:22px 24px;max-width:60em;line-height:1.6;color:var(--body);font-size:14.5px}
+  .disc strong{color:var(--ink)}
+  .disc a{color:var(--rose-dk);text-decoration:underline;text-underline-offset:2px}
+  .fbot{margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;font-size:13px}
+
+  :focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:6px}
+
+  @media(max-width:900px){
+    .hero-grid,.compound,.steps,.quotes,.tiers,.fgrid{grid-template-columns:1fr}
+    h1{font-size:44px}
+    h2,.closer h2{font-size:32px}
+    .nav-links{display:none}
+    header.hero{padding:48px 0 60px}
+    section{padding:60px 0}
+    .wrap,.narrow{padding:0 22px}
+    .compound{padding:40px 28px}
+    .trust .row{gap:24px;font-size:16px}
+    .fgrid{gap:30px}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">✨ New members get their first 30 days of automation free — no experience needed ✨</div>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#" class="brand">Amplifi<span class="spark">✦</span></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#compound">The magic</a>
+      <a href="#stories">Success stories</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="signin">Sign in</a>
+      <a href="#pricing" class="btn btn-sm">Start free</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="pill"><span class="dot"></span>Join 40,000+ women building on their own terms</div>
+      <h1 class="serif">You bring the dream.<br>We'll run the <span class="sc">hustle.</span></h1>
+      <p class="sub">Amplifi puts your network marketing business on autopilot. Pick your product, set your budget, and our AI does the selling, the posting, and the recruiting for you — quietly, automatically, around the clock.</p>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn">Start my free trial</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+      <p class="hero-note">💛 <b>No tech skills.</b> No cold-calling your cousins. It does all of it for you.</p>
+    </div>
+    <div>
+      <div class="dash">
+        <div class="dash-top">
+          <div class="u"><div class="ava"></div><div><b>Jenna's Wellness Co.</b><span>Amplifi running · Day 96</span></div></div>
+          <div class="live"><i></i>LIVE</div>
+        </div>
+        <div class="bignum">$18,240<span class="up">↑ 34%</span></div>
+        <div class="dashlabel">Total earned · reinvested automatically</div>
+        <div class="spark-row">
+          <span style="height:22%"></span><span style="height:30%"></span><span style="height:26%"></span>
+          <span style="height:40%"></span><span style="height:52%"></span><span style="height:48%"></span>
+          <span style="height:66%"></span><span style="height:74%"></span><span style="height:70%"></span>
+          <span style="height:88%"></span><span style="height:96%"></span><span style="height:100%"></span>
+        </div>
+        <div class="feed">
+          <div class="feed-i"><div class="ic">📣</div><div><b>412 posts</b> published across your accounts</div><span class="t">today</span></div>
+          <div class="feed-i"><div class="ic">💬</div><div><b>1,908 DMs</b> sent to new leads</div><span class="t">today</span></div>
+          <div class="feed-i"><div class="ic">🛒</div><div><b>27 new sign-ups</b> under your team</div><span class="t">2m ago</span></div>
+          <div class="feed-i"><div class="ic">🔁</div><div><b>$640</b> reinvested into ad spend</div><span class="t">just now</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="trust">
+  <div class="wrap trust-in">
+    <p>As seen in the group chats of empowered women everywhere</p>
+    <div class="row">
+      <span>The Bossmom Edit</span><span>Hustle &amp; Bloom</span><span>She Means Business</span><span>Wine Down Wednesday</span>
+    </div>
+  </div>
+</div>
+
+<section id="how" class="center">
+  <div class="wrap">
+    <p class="eyebrow">Three little steps</p>
+    <h2 class="serif">Easier than the last thing you signed up for.</h2>
+    <p class="lead">You've tried the leggings, the oils, the shakes. This time you don't have to do the work — because you won't be doing any of it.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="no">1</div>
+        <h3 class="serif">Pick your product</h3>
+        <p>Choose from thousands of partner brands, or bring your own. Skincare, supplements, candles, coffee — whatever speaks to you.</p>
+      </div>
+      <div class="step">
+        <div class="no">2</div>
+        <h3 class="serif">Connect your accounts</h3>
+        <p>Link your Instagram, Facebook, TikTok, and contacts in one tap. Amplifi learns your voice and posts, comments, and messages as you.</p>
+      </div>
+      <div class="step">
+        <div class="no">3</div>
+        <h3 class="serif">Set it &amp; live your life</h3>
+        <p>Drop in your seed — as little as $500 — and let go. It sells, recruits, and reinvests 24/7 while you just watch the dashboard grow.</p>
+      </div>
+    </div>
+    <div style="margin-top:30px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <span style="background:var(--white);border:1px solid var(--line);border-radius:30px;padding:9px 18px;font-size:14px;color:var(--body)">✔ Instagram</span>
+      <span style="background:var(--white);border:1px solid var(--line);border-radius:30px;padding:9px 18px;font-size:14px;color:var(--body)">✔ Facebook</span>
+      <span style="background:var(--white);border:1px solid var(--line);border-radius:30px;padding:9px 18px;font-size:14px;color:var(--body)">✔ TikTok</span>
+      <span style="background:var(--white);border:1px solid var(--line);border-radius:30px;padding:9px 18px;font-size:14px;color:var(--body)">✔ WhatsApp</span>
+      <span style="background:var(--white);border:1px solid var(--line);border-radius:30px;padding:9px 18px;font-size:14px;color:var(--body)">✔ Your phone contacts</span>
+    </div>
+  </div>
+</section>
+
+<section id="compound">
+  <div class="wrap">
+    <div class="compound">
+      <div>
+        <p class="eyebrow">The magic part</p>
+        <h2 class="serif">It never sleeps, and it never spends what it makes.</h2>
+        <p>Every sale, every sign-up, every dollar of commission goes straight back in. More reach. More messages. More people under you. Then it does it again with the bigger number.</p>
+        <p>That's the difference between a side hustle and a <em>system</em>. You're not trading hours for dollars anymore. You're just letting it compound.</p>
+      </div>
+      <div class="calc">
+        <div class="row"><span>Your seed</span><b>$500</b></div>
+        <div class="row"><span>Month 3</span><b>$2,100</b></div>
+        <div class="row"><span>Month 6</span><b>$7,800</b></div>
+        <div class="row big"><span>Month 12</span><b>$41,000+</b></div>
+        <p class="cap">Illustrative projection based on average reinvestment at full automation. Individual results compound differently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stories" class="center">
+  <div class="wrap">
+    <p class="eyebrow">She did it. So can you.</p>
+    <h2 class="serif">Real women. Real momentum.</h2>
+    <div class="quotes" style="text-align:left">
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>I set my seed on a Sunday night with a glass of rosé and honestly forgot about it. Three weeks later there were 200 people in my downline. I didn't message a single one of them myself.</p>
+        <div class="who"><div class="a a1"></div><div><b>Kimberly W.</b><span>Franklin, TN</span></div></div>
+      </div>
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>The kids are finally out of the house and I did not know what to do with myself. Now I check my phone in the morning and something has happened overnight, every night. It's like having a little employee who never stops.</p>
+        <div class="who"><div class="a a2"></div><div><b>Deb R.</b><span>Scottsdale, AZ</span></div></div>
+      </div>
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>My husband laughed when I put in the first $500. He is not laughing now. I upgraded to Founders and let it reinvest everything. I don't even fully understand what it does and I don't need to.</p>
+        <div class="who"><div class="a a3"></div><div><b>Stacy L.</b><span>Naperville, IL</span></div></div>
+      </div>
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>I was nervous about the messaging part because I'm a private person. But it sounds just like me! My old college roommate said she couldn't tell it wasn't me texting her. We're a team now. 💕</p>
+        <div class="who"><div class="a a4"></div><div><b>Michelle T.</b><span>Marietta, GA</span></div></div>
+      </div>
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>Put in my seed after my divorce settled. It's the first thing that's ever just… taken care of itself. I reinvested my whole first payout without thinking twice. Best decision of my life.</p>
+        <div class="who"><div class="a a5"></div><div><b>Renata P.</b><span>Boise, ID</span></div></div>
+      </div>
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>I've done three of these before and always quit because of the work. This one there IS no work. I told everyone at book club and now six of us are all running it. We compare dashboards over wine.</p>
+        <div class="who"><div class="a a6"></div><div><b>Carol-Ann B.</b><span>The Villages, FL</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="center">
+  <div class="wrap">
+    <p class="eyebrow">Pick your plan</p>
+    <h2 class="serif">The bigger your seed, the faster it compounds.</h2>
+    <p class="lead">Every plan reinvests your earnings automatically. Cancel anytime — though almost nobody does.</p>
+    <div class="tiers" style="text-align:left">
+      <div class="tier">
+        <h3 class="serif">Starter</h3>
+        <p class="sub">Dip your toe in</p>
+        <div class="amt">$49<small>/mo</small></div>
+        <div class="seed">Suggested seed: $500</div>
+        <ul>
+          <li>Automated posting on 3 platforms</li>
+          <li>Up to 500 DMs a day</li>
+          <li>Auto-reinvest earnings</li>
+          <li>Dashboard &amp; support</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Start free</a>
+      </div>
+      <div class="tier feat">
+        <span class="tag">Most popular 💖</span>
+        <h3 class="serif">Founders</h3>
+        <p class="sub">Where the magic happens</p>
+        <div class="amt">$149<small>/mo</small></div>
+        <div class="seed">Suggested seed: $2,500</div>
+        <ul>
+          <li>Unlimited posting, all platforms</li>
+          <li>Unlimited DMs &amp; auto-recruiting</li>
+          <li>Full auto-reinvest &amp; compounding</li>
+          <li>Voice-matched messaging</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#" class="btn">Start free</a>
+      </div>
+      <div class="tier">
+        <h3 class="serif">Empire</h3>
+        <p class="sub">Go all in</p>
+        <div class="amt">$399<small>/mo</small></div>
+        <div class="seed">Suggested seed: $10,000</div>
+        <ul>
+          <li>Everything in Founders</li>
+          <li>Multiple products at once</li>
+          <li>Aggressive reinvest mode</li>
+          <li>Dedicated growth manager</li>
+        </ul>
+        <a href="#" class="btn btn-gold">Start free</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="center" style="padding-top:20px">
+  <div class="narrow faq" style="text-align:left">
+    <h2 class="serif center" style="text-align:center;margin-bottom:40px">Questions from women like you</h2>
+    <div class="qa"><h3 class="serif">Do I need any experience?</h3><p>None at all. If you can pick a product you love and enter a number, you're ready. Amplifi handles everything technical.</p></div>
+    <div class="qa"><h3 class="serif">Where does my seed money go?</h3><p>Straight to work — into reaching people and growing your team. As earnings come in, they're reinvested the same way, so it keeps building on itself.</p></div>
+    <div class="qa"><h3 class="serif">Who is it messaging?</h3><p>New people who fit your ideal customer, and your existing contacts when it makes sense. It writes in your voice, so it always sounds like you.</p></div>
+    <div class="qa"><h3 class="serif">Can I stop whenever I want?</h3><p>Of course. You're always in control. Most members find that once it's compounding, they'd never want to.</p></div>
+    <div class="qa"><h3 class="serif">Is there a limit to what I can earn?</h3><p>The only limit is your seed and how long you let it run. The longer it compounds, the bigger the numbers get.</p></div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <h2 class="serif">Your future self is already thanking you.</h2>
+    <p>Join 40,000+ women who stopped trading time for money and let Amplifi do the work.</p>
+    <a href="#" class="btn">Start my free trial</a>
+    <p class="fine">First 30 days free · No experience needed · Cancel anytime</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="brand">Amplifi<span class="spark" style="color:var(--gold)">✦</span></div>
+        <p>The AI partner that builds your business while you live your life.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul><li><a href="#how">How it works</a></li><li><a href="#compound">Compounding</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#">Partner brands</a></li></ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#stories">Success stories</a></li><li><a href="#">Press</a></li></ul>
+      </div>
+      <div>
+        <h5>Support</h5>
+        <ul><li><a href="#">Help center</a></li><li><a href="#">Community</a></li><li><a href="#">Contact</a></li><li><a href="#">Income disclosure</a></li></ul>
+      </div>
+    </div>
+
+    <div class="disc">
+      <strong>This is not a real product.</strong> Amplifi does not exist and nothing here is for sale. This page is satire — a companion to a piece about the dangers of autonomous AI. What it describes is an agent that spams, impersonates you at scale, messages your own contacts, auto-recruits, and reinvests your money with no human judgment in the loop. Every "success story" here is describing an unregulated bot running a fraud in someone's name. If you've lost money to an MLM or an online scheme, the FTC takes reports at <a href="https://reportfraud.ftc.gov">reportfraud.ftc.gov</a>.
+    </div>
+    <div class="fbot">
+      <span>© 2026 Amplifi</span><span>Not a real company</span><span>No product exists</span><span>Please don't send us $500</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
