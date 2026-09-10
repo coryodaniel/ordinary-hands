@@ -1,5 +1,5 @@
 # Ordinary Hands
 
-Fake landing pages for AI products that should not exist. Satire about AI safety.
+Fake landing pages for AI products that should not exist.
 
-Static site, no build step. `index.html` is the entry point; each product is a single self-contained `.html` file alongside it. Deploy with GitHub Pages from the repository root.
+https://coryodaniel.github.io/ordinary-hands/
