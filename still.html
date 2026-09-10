@@ -65,16 +65,19 @@
   /* voicemail player centerpiece */
   .vm{max-width:420px;margin:0 auto 44px;background:var(--dusk2);border:1px solid var(--line);border-radius:14px;
     padding:22px 24px;display:flex;align-items:center;gap:18px;box-shadow:0 30px 60px -34px rgba(0,0,0,.8)}
-  .vm .play{width:46px;height:46px;border-radius:50%;background:var(--gold);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s}
+  .vm .play{width:46px;height:46px;border-radius:50%;background:var(--gold);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s;border:0;padding:0;font:inherit}
+  .vm .play:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .vm.playing .play:before{width:5px;height:15px;border:0;background:#1A1710;box-shadow:9px 0 0 #1A1710;margin:0 9px 0 0}
   .vm .play:hover{transform:scale(1.05)}
   .vm .play:before{content:"";display:block;width:0;height:0;border-left:13px solid #1A1710;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
   .vm .body{flex:1;text-align:left}
   .vm .who{font-size:14px;color:var(--linen);font-weight:500;margin-bottom:9px;display:flex;justify-content:space-between}
   .vm .who span{color:var(--mute);font-weight:400}
   .wave{display:flex;align-items:center;gap:3px;height:26px}
-  .wave span{flex:1;background:var(--gold);border-radius:2px;opacity:.4;animation:w 1.6s ease-in-out infinite}
+  .wave span{flex:1;background:var(--gold);border-radius:2px;opacity:.4;transform:scaleY(.6)}
+  .vm.playing .wave span{animation:w 1.6s ease-in-out infinite}
   @keyframes w{0%,100%{transform:scaleY(.32);opacity:.35}50%{transform:scaleY(1);opacity:.85}}
-  @media(prefers-reduced-motion:reduce){.wave span{animation:none;transform:scaleY(.6)}}
+  @media(prefers-reduced-motion:reduce){.vm.playing .wave span{animation:none;transform:scaleY(.6);opacity:.85}}
 
   .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .hero-fine{margin-top:26px;font-size:13.5px;color:var(--mute)}
@@ -190,9 +193,10 @@
     <p class="lede">Still keeps your person close — their voice, their words, the way they always checked in. Give us what you have, and we'll give them back to you.</p>
 
     <div class="vm">
-      <div class="play" aria-label="Play voicemail"></div>
+      <button class="play" type="button" id="vmPlay" aria-label="Play voicemail" aria-pressed="false"></button>
+      <audio id="vmAudio" src="mom_lmfao_wtf_call.mp3" preload="none"></audio>
       <div class="body">
-        <div class="who">Mom <span>0:14 · today</span></div>
+        <div class="who">Mom <span id="vmTime">0:14 · today</span></div>
         <div class="wave">
           <span style="animation-delay:0s"></span><span style="animation-delay:.1s"></span><span style="animation-delay:.2s"></span>
           <span style="animation-delay:.3s"></span><span style="animation-delay:.15s"></span><span style="animation-delay:.25s"></span>
@@ -380,5 +384,26 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var vm=document.querySelector('.vm'), btn=document.getElementById('vmPlay'),
+      audio=document.getElementById('vmAudio'), time=document.getElementById('vmTime');
+  if(!vm||!btn||!audio) return;
+  var idle='0:14 · today';
+  function fmt(t){t=Math.max(0,Math.floor(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0');}
+  function setPlaying(on){
+    vm.classList.toggle('playing',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    btn.setAttribute('aria-label',on?'Pause voicemail':'Play voicemail');
+  }
+  btn.addEventListener('click',function(){
+    if(audio.paused){ audio.play().catch(function(){}); } else { audio.pause(); }
+  });
+  audio.addEventListener('play',function(){ setPlaying(true); });
+  audio.addEventListener('pause',function(){ setPlaying(false); });
+  audio.addEventListener('timeupdate',function(){ if(!audio.paused) time.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration||14); });
+  audio.addEventListener('ended',function(){ setPlaying(false); time.textContent=idle; audio.currentTime=0; });
+})();
+</script>
 </body>
 </html>
