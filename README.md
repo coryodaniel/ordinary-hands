@@ -10,4 +10,4 @@ Everything here was built by dictation. I don't know how to design front ends, s
 
 The AI-isms that slipped through are part of the piece. I'm not taking pull requests that fix the copy or the code.
 
-Happy to talk AI policy or whatever else, particularly on the [Platform Engineering Podcast](https://platformengineeringpod.com): cory [at] massdriver.cloud
+Happy to talk AI policy or whatever else, particularly on the [Platform Engineering Podcast](https://platformengineeringpod.com): cory [at] my-day-jobs.domain
