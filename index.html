@@ -74,8 +74,16 @@
   .statement p:last-child{margin-bottom:0}
   .statement p strong{font-weight:500;color:var(--ox)}
 
+  /* ===== hero ===== */
+  .hero{padding:40px 0 0}
+  .hero img{display:block;width:100%;height:auto;border:1px solid var(--hair)}
+  .hero .under{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:baseline;padding:36px 0 8px}
+  .hero .lede{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-size:24px;line-height:1.4;color:var(--ink);margin:0;max-width:34em;letter-spacing:-.005em}
+  .hero .why{font-family:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-decoration:none;white-space:nowrap}
+  .hero .why:hover{color:var(--ink)}
+
   /* ===== collection ===== */
-  .collection{padding:72px 0 120px;border-bottom:1px solid var(--hair)}
+  .collection{padding:56px 0 120px;border-bottom:1px solid var(--hair)}
   .col-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:56px;flex-wrap:wrap}
   .col-head h2{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-weight:300;font-size:54px;letter-spacing:-.02em;line-height:1;margin:0}
   .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 40px}
@@ -193,6 +201,7 @@
   @media(max-width:1000px){
     .grid{grid-template-columns:1fr}
     .cols{grid-template-columns:1fr;gap:36px}
+    .hero .under{grid-template-columns:1fr;gap:18px}
   }
   @media(max-width:640px){
     .rail{padding:0 22px}
@@ -202,6 +211,9 @@
     .statement p{font-size:20px}
     .statement p.first{font-size:24px}
     .collection{padding:64px 0 80px}
+    .hero{padding-top:22px}
+    .hero .under{grid-template-columns:1fr;gap:18px;padding-top:26px}
+    .hero .lede{font-size:20px}
     .col-head h2{font-size:40px}
     .label{padding:26px 24px 28px}
     .label h3{font-size:32px}
@@ -224,6 +236,16 @@
     </div>
   </div>
 </header>
+
+<section class="hero">
+  <div class="rail">
+    <img src="ordinary-hands.png" alt="A synthetic hand and a human hand shaking. Ordinary Hands: an AI art project about AI policy and what happens when open-weight models land in ordinary hands." width="1200" height="630">
+    <div class="under">
+      <p class="lede">Not the grand version of the AI problem. The ordinary one: what happens when this reaches the scammer who already has your number, the neighbor who holds a grudge, the worst person you know.</p>
+      <a class="why" href="#statement">Why&#8253; &darr;</a>
+    </div>
+  </div>
+</section>
 
 <section class="collection" id="collection">
   <div class="rail">
