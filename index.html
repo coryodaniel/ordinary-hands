@@ -51,7 +51,7 @@
 
 
   /* ===== statement ===== */
-  .statement{padding:96px 0;border-bottom:1px solid var(--hair)}
+  .statement{padding:96px 0 120px;border-bottom:1px solid var(--hair)}
   .cols{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:64px}
   .sechead{font-family:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0;padding-top:8px}
   .sechead small{display:block;margin-top:10px;color:var(--faint);letter-spacing:.06em;text-transform:none;font-size:12px}
@@ -156,13 +156,6 @@
   .plate-ev .wm{position:absolute;left:28px;bottom:22px;font-family:"Inter",sans-serif;font-weight:700;font-size:15px;color:var(--ev-ink);display:flex;align-items:center;gap:5px}
   .plate-ev .wm b{color:var(--ev-rose);font-weight:400;font-size:13px}
 
-  /* ===== argument ===== */
-  .argument{padding:110px 0;border-bottom:1px solid var(--hair);background:var(--paper2)}
-  .argument h2{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-weight:300;font-size:clamp(38px,4.6vw,62px);line-height:1.04;letter-spacing:-.02em;margin:0 0 40px;max-width:15em;text-wrap:balance}
-  .argument p{font-size:18px;line-height:1.7;color:var(--ink2);margin:0 0 22px;max-width:36em}
-  .argument p:last-of-type{margin-bottom:0}
-  .argument .rule{height:1px;background:var(--hair2);margin:44px 0;max-width:120px}
-
   /* ===== footer ===== */
   footer{padding:64px 0 56px;font-size:14px;color:var(--mute)}
   .fmark{font-family:"IBM Plex Mono",Menlo,monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:28px;font-weight:500}
@@ -201,7 +194,6 @@
     .acc{flex-direction:column;gap:6px;align-items:flex-start}
     .plate-am .wm,.plate-st .wm,.plate-ev .wm{display:none}
     .label blockquote p{font-size:19px}
-    .argument{padding:72px 0}
     .plate-am .dash{left:8%;right:8%;padding:16px 18px}
     .plate-am .num{font-size:28px}
   }
@@ -215,7 +207,6 @@
     <div class="meta">
       <a href="#collection">Products</a>
       <a href="#statement">Statement</a>
-      <a href="#why">Why</a>
     </div>
   </div>
 </header>
@@ -357,22 +348,10 @@
   <div class="rail cols">
     <p class="sechead">Statement<small>What this is and why</small></p>
     <div>
-      <p class="first serif rv">Most writing about the risks of autonomous AI is abstract. It talks about institutions and futures, and it is hard to feel anything about either. These pages take the same risks and turn them into products you could imagine buying, with the pricing and the customer reviews you would expect.</p>
-      <p class="serif rv">Every product is fake. The companies don't exist, the hardware was never made, and the customers in the reviews never lived. The technology under them is real and available now.</p>
-      <p class="serif rv"><strong>The limits on what these systems will do can't be left entirely to whoever ends up running the model.</strong> If someone has a capable model on their own hardware and nobody else is involved, the only rule about what it will do is whatever that person wants. These products are what gets built and sold once that is the setup.</p>
-    </div>
-  </div>
-</section>
-
-<section class="argument" id="why">
-  <div class="rail cols">
-    <p class="sechead">Why this exists<small>A note on form</small></p>
-    <div>
-      <h2 class="serif">Nothing here requires a breakthrough.</h2>
-      <p>Arguments about who should set the limits on AI systems usually happen far away from any actual person, in language about frameworks, deployers, and responsible use. These pages show what that language means for a man who lost a parking spot, or a woman who finally found something that takes care of itself.</p>
-      <p>Each page is written the way its company would write it, because a landing page with a pricing table and five-star reviews is about the most ordinary thing on the internet. The only thing unusual about these is what the customers are happy about.</p>
-      <div class="rule"></div>
-      <p>This is not an argument that these systems shouldn't exist, or that the people who would buy them are unusual. It is an argument that if the decision about what a model will refuse is left entirely to the person holding it, products like these are what you get.</p>
+      <p class="first serif rv">The technology on this site is real. Only the products are invented — and only because no one has assembled them yet.</p>
+      <p class="serif rv">None of the customers here are unusual. A man who lost an argument over a parking space. A woman whose ex moved on. A couple who waited too long and can't stop thinking about it. People have always wanted revenge, wanted money they haven't earned, wanted the dead back and the missing filled in. What is new is not the wanting. It is that we are about to hand every one of those ordinary impulses an intelligence that can plan, and a reach that can act — patiently, anonymously, at scale, from anywhere — for as long as the machine is left running. The gap between wanting something terrible and being able to do it has, for most of history, been effort. That gap is closing.</p>
+      <p class="serif rv">Consider how loud the world already is: the robocalls, the scam texts, the fake reviews, the inbox nobody can clear. All of that is produced by people with limited time and limited skill. Remove both limits and the noise stops being an annoyance and becomes an atmosphere, everywhere: your inbox, your texts, your voicemail.</p>
+      <p class="serif rv">Today the only thing standing between that and us is a handful of AI companies choosing what their models will refuse. That restraint is voluntary, it varies by company, and it ends the moment a model is copied into open weights and run on a machine someone owns. No law sets the line. No regulator holds anyone to it. No jurisdiction has even claimed it. We have decided, so far, to leave one of the most consequential questions of the decade to the discretion of whoever happens to be holding the model — and to trust that they, and everyone downstream of them, decide well.</p>
     </div>
   </div>
 </section>
